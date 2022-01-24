@@ -9,7 +9,7 @@ const bodyParser = require('body-parser')
 mongoose.connect('mongodb+srv://xlsKite:xlsKite96258992@cluster0.att3q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const server = http.createServer(app);
 const startedAt = new Date();
 
