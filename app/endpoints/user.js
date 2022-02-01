@@ -42,9 +42,9 @@ module.exports = (app) => {
         console.log("fencontradon")
         console.log(find)
         if(find.length > 0) {
-          res.send('SUCCESS');
+          res.send({message: 'LOGGED'});
         } else {
-          res.send('USER_FOUDNT');
+          res.send({message: 'USER_FOUNDNT'});
         }
        
       } catch(err) {
