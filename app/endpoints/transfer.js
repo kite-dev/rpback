@@ -4,7 +4,7 @@ module.exports = (app) => {
   const db = app.get('db');
   const transferSchema = new db.Schema({
     'name': String,
-    'type': String
+    'monto': Number
     });
   const transferModel = db.model('Transfer', transferSchema );
 
