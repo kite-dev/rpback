@@ -19,6 +19,12 @@ app.use(bodyParser.json())
 
 app.set('db',  mongoose)
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 endpoints(app);
 // index endpoint
 app.get('/', (req, res) => {
