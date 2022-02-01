@@ -39,6 +39,8 @@ module.exports = (app) => {
         console.log(email)
         console.log(password)
         const find = await userModel.find({email: email, password: password});
+        console.log("fencontradon")
+        console.log(find)
         if(find.length > 0) {
           res.send('SUCCESS');
         } else {
