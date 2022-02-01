@@ -36,6 +36,8 @@ module.exports = (app) => {
       // const find = schema.find({name: 'hola'})
       try {
         const { email, password } = req.body;
+        console.log(email)
+        console.log(password)
         const find = await userModel.find({email: email, password: password});
         if(find.length > 0) {
           res.send('SUCCESS');
