@@ -31,6 +31,24 @@ module.exports = (app) => {
         throw err;
       }
     });
+  
+    app.post('/user/login', async (req, res) => {
+      // const find = schema.find({name: 'hola'})
+      try {
+        const { email, password } = req.body;
+        const find = await userModel.find({email: email, password: password});
+        if(find.length > 0) {
+          res.send('SUCCESS');
+        } else {
+          res.send('USER_FOUDNT');
+        }
+       
+      } catch(err) {
+        console.log(err);
+        throw err;
+      }
+    });
+
     app.get('/user/all', async(req, res) => {
       try{
         const find = await userModel.find({});
