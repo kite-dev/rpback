@@ -19,22 +19,22 @@ module.exports = (app) => {
       try {
         const newAssociate = req.body;
         if(!req.body.owner){
-          return res.status(400).send('Owner is required');
+          return res.status(400).send('OWNER_REQUIRED');
         }
         if(!req.body.rut){
-          return res.status(400).send('Rut is required');
+          return res.status(400).send('RUT_REQUIRED');
         }
         if(!req.body.email){
-          return res.status(400).send('Email is required');
+          return res.status(400).send('EMAIL_REQUIRED');
         }
         if(!req.body.cellphone){
-          return res.status(400).send('Cellphone is required');
+          return res.status(400).send('CELLPHONE_REQUIRED');
         }
         if(!req.body.type){
-          return res.status(400).send('Type is required');
+          return res.status(400).send('TYPE_REQUIRED');
         }
         if(!req.body.bank){
-          return res.status(400).send('Bank is required');
+          return res.status(400).send('BANK_REQUIRED');
         }
         console.log(newAssociate)
         await new associateModel(newAssociate).save();
