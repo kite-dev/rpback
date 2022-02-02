@@ -3,20 +3,40 @@ module.exports = (app) => {
 
     const db = app.get('db');
     const associate = new db.Schema({
-      'asociate_of': String,
+      'owner': String,
       'rut': String,
       'email': String,
       'cellphone': Number,
       'type': String,
       'number': Number,
       'bank_id': Number,
-      'account_type_name': String,
+      'bank_name': String,
+      'type_name': String,
       });
     const associateModel = db.model('Associate', associate );
   
     app.post('/associate', async(req, res) => {
       try {
         const newAssociate = req.body;
+        if(!req.body.owner){
+          return res.status(400).send('Owner is required');
+        }
+        if(!req.body.rut){
+          return res.status(400).send('Rut is required');
+        }
+        if(!req.body.email){
+          return res.status(400).send('Email is required');
+        }
+        if(!req.body.cellphone){
+          return res.status(400).send('Cellphone is required');
+        }
+        if(!req.body.type){
+          return res.status(400).send('Type is required');
+        }
+        if(!req.body.bank){
+          return res.status(400).send('Bank is required');
+        }
+        console.log(newAssociate)
         await new associateModel(newAssociate).save();
         res.send({message:'CREATED'});
       } catch (error) {
