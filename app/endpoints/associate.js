@@ -8,8 +8,8 @@ module.exports = (app) => {
       'email': String,
       'cellphone': Number,
       'type': String,
-      'number': Number,
-      'bank_id': Number,
+      'number': String,
+      'bank_id': String,
       'bank_name': String,
       'type_name': String,
       });
@@ -33,10 +33,9 @@ module.exports = (app) => {
         if(!req.body.type){
           return res.status(400).send({message:'TYPE_REQUIRED'});
         }
-        if(!req.body.bank){
+        if(!req.body.bank_id){
           return res.status(400).send({message:'BANK_REQUIRED'});
         }
-        console.log(newAssociate)
         await new associateModel(newAssociate).save();
         res.send({message:'CREATED'});
       } catch (error) {
@@ -46,10 +45,10 @@ module.exports = (app) => {
       
     });
   
-    app.get('/associate/:userId', async (req, res) => {
+    app.get('/associate/:email', async (req, res) => {
       // const find = schema.find({name: 'hola'})
       try {
-        const find = await associateModel.find({user_id: req.params.userId});
+        const find = await associateModel.find({owner: req.params.email});
         res.send(find);
       } catch(err) {
         console.log(err);
