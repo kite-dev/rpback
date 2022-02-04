@@ -4,6 +4,7 @@ module.exports = (app) => {
     const db = app.get('db');
     const associate = new db.Schema({
       'owner': String,
+      'name': String,
       'rut': String,
       'email': String,
       'cellphone': Number,
@@ -48,6 +49,9 @@ module.exports = (app) => {
     app.get('/associate/:email', async (req, res) => {
       // const find = schema.find({name: 'hola'})
       try {
+        const email = req.params.email;
+        console.log("entra aqui")
+        console.log(email)
         const find = await associateModel.find({owner: req.params.email});
         res.send(find);
       } catch(err) {

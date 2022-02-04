@@ -3,14 +3,19 @@ module.exports = (app) => {
 
   const db = app.get('db');
   const transferSchema = new db.Schema({
+    'owner': String,
+    'amount': String,
+    'rut': String,
+    'bank_name': String,
+    'type_name': String,
     'name': String,
-    'monto': Number
     });
   const transferModel = db.model('Transfer', transferSchema );
 
   app.post('/transfer', async(req, res) => {
     try {
       const newTransfer = req.body;
+      console.log(newTransfer);
       await new transferModel(newTransfer).save();
       res.send({message:'CREATED'});
     } catch (error) {
@@ -20,10 +25,10 @@ module.exports = (app) => {
     
   });
 
-  app.get('/transfer/all', async (req, res) => {
+  app.get('/transfer/:email', async (req, res) => {
     // const find = schema.find({name: 'hola'})
     try {
-      const find = await transferModel.find({});
+      const find = await transferModel.find({owner: req.params.email});
       res.send(find);
     } catch(err) {
       console.log(err);
