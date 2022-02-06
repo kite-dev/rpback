@@ -39,8 +39,8 @@ module.exports = (app) => {
         }
         await new associateModel(newAssociate).save();
         res.send({message:'CREATED'});
-      } catch (error) {
-        console.log(error);
+      } catch (err) {
+        console.log(err);
         throw err;
       }
       
@@ -50,8 +50,6 @@ module.exports = (app) => {
       // const find = schema.find({name: 'hola'})
       try {
         const email = req.params.email;
-        console.log("entra aqui")
-        console.log(email)
         const find = await associateModel.find({owner: req.params.email});
         res.send(find);
       } catch(err) {
